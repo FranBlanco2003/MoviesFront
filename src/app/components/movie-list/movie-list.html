@@ -1,1 +1,36 @@
-<p>movie-list works!</p>
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Buscar película..."
+    [(ngModel)]="searchTerm"
+    (keyup.enter)="searchMovies()"
+  />
+  <button (click)="searchMovies()">Buscar</button>
+</div>
+
+@if (isLoading) {
+  <div>Cargando...</div>
+}
+
+@if (errorMessage) {
+  <div>{{ errorMessage }}</div>
+}
+
+@if (movies.length) {
+  <ul>
+    @for (movie of movies; track movie.imdbID) {
+      <li>
+        <a [routerLink]="['/movie', movie.imdbID]">
+          <img [src]="movie.Poster" alt="{{ movie.Title }}" />
+          <h3>{{ movie.Title }}</h3>
+          <p>{{ movie.Year }}</p>
+        </a>
+      </li>
+    }
+  </ul>
+}
+
+
+@if (!isLoading && !movies.length && searchTerm) {
+  <div>No se encontraron resultados.</div>
+}
