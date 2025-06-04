@@ -21,6 +21,9 @@ export class MovieTitleService {
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa('user:user')
     });
+    if(name.includes(' ')) {
+      name = name.replace(/ /g, '+');
+    }
     const params = new HttpParams().set('name', name);
     return this.http.get<MovieTitle[]>(`${this.baseUrl}`, {headers, params});
   }
