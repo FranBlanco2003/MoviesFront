@@ -1,1 +1,13 @@
-<p>movie-detail works!</p>
+@if (movie) {
+  <div class="movie-detail">
+    <img [src]="movie.Poster" alt="{{ movie.Title }}" />
+    <div class="info">
+      <h2>{{ movie.Title }} ({{ movie.Year }})</h2>
+      <p><strong>Director:</strong> {{ movie.Director }}</p>
+      <p><strong>IMDb:</strong> {{ movie.imdbRating }}</p>
+      <p><strong>Sinopsis:</strong> {{ movie.Plot }}</p>
+    </div>
+  </div>
+} @else {
+  <p class="status-message">{{ errorMessage || 'Cargando...' }}</p>
+}

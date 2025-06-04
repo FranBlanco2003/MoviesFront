@@ -1,0 +1,26 @@
+.movie-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  align-items: flex-start;
+}
+
+.movie-detail img {
+  max-width: 300px;
+  border-radius: 8px;
+}
+
+.info {
+  max-width: 600px;
+}
+
+.info h2 {
+  margin-top: 0;
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
