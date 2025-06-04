@@ -5,11 +5,10 @@ import {MovieTitle} from './movieTitle';
 
 export interface Movie {
   Title: string;
-  Year: string;
-  imdbRating: string;
-  Director: string;
-  Poster: string;
+  Released: string;
+  Language: string;
   Plot: string;
+  Poster: string;
 }
 
 @Injectable({
