@@ -21,11 +21,22 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const imdbID = this.route.snapshot.paramMap.get('id');
+
     if (imdbID) {
       this.movieService.getMovieDetails(imdbID).subscribe({
-        next: (movie) => (this.movie = movie),
-        error: () => (this.errorMessage = 'No se pudo cargar la película.')
+        next: (movie) => {
+          if (movie && movie.Title) {
+            this.movie = movie;
+          } else {
+            this.errorMessage = 'No se encontró la película.';
+          }
+        },
+        error: () => {
+          this.errorMessage = 'No se pudo cargar la película.';
+        }
       });
+    } else {
+      this.errorMessage = 'ID de película no válido.';
     }
   }
 }

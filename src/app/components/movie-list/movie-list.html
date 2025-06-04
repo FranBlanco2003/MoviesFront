@@ -9,11 +9,11 @@
 </div>
 
 @if (isLoading) {
-  <div>Cargando...</div>
+  <div class="loading">Cargando...</div>
 }
 
 @if (errorMessage) {
-  <div>{{ errorMessage }}</div>
+  <div class="error">{{ errorMessage }}</div>
 }
 
 @if (movies.length) {

@@ -95,3 +95,26 @@ li p {
   font-size: 14px;
   color: #ccc;
 }
+
+.loading {
+  background-color: #d9edf7;
+  color: #31708f;
+  border: 1px solid #31708f;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.error {
+  background-color: #ffdddd;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+

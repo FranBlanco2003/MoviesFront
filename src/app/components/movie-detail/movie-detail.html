@@ -14,5 +14,14 @@
     </div>
   </div>
 } @else {
-  <p class="status-message">{{ errorMessage || 'Cargando...' }}</p>
+  <p
+    class="status-message"
+    [ngClass]="{
+      'status-error': errorMessage,
+      'status-loading': !errorMessage
+    }"
+  >
+    {{ errorMessage || 'Cargando...' }}
+  </p>
 }
+

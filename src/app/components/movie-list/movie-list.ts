@@ -35,6 +35,7 @@ export class MovieListComponent {
       }
       ,
       error: (error) => {
+        this.movies = [];
         this.isLoading = false;
         this.errorMessage = 'Error al buscar películas. Por favor, inténtelo de nuevo más tarde.';
         console.error('Error al buscar películas:', error);
