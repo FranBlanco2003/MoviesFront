@@ -1,18 +1,49 @@
-.container{
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #f0f0f0;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #1e1e1e;
 }
 
 h1 {
   font-size: 2.5rem;
-  color: #333;
+  color: #f5c518; /* Dorado estilo IMDb */
   text-align: center;
+  margin: 0;
 }
 
-.header{
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 20px;
+.header {
+  background-color: #202020;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  width: 100%;
 }
+
+.header h1 {
+  font-size: 2rem;
+  color: #f5c518;
+}
+
+/* Reset y fondo global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+
+

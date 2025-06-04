@@ -1,14 +1,14 @@
 @if (movie) {
-  <div class="movie-detail" *ngIf="movie">
+  <div class="movie-detail">
     <h2 class="title">{{ movie.Title }}</h2>
 
     <div class="poster-info">
       <img [src]="movie.Poster" [alt]="movie.Title" class="poster" />
 
       <div class="details">
-        <p><strong>Estrenada:</strong> {{ movie.Released }}</p>
-        <p><strong>Idioma:</strong> {{ movie.Language }}</p>
-        <p><strong>Sinopsis:</strong></p>
+        <p><strong>🎬 Estrenada:</strong> {{ movie.Released }}</p>
+        <p><strong>🌍 Idioma:</strong> {{ movie.Language }}</p>
+        <p><strong>📝 Sinopsis:</strong></p>
         <p class="plot">{{ movie.Plot }}</p>
       </div>
     </div>

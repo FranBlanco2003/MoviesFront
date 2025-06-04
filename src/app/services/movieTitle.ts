@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs';
 
 export interface MovieTitle {
   Title: string;
@@ -11,12 +12,16 @@ export interface MovieTitle {
   providedIn: 'root'
 })
 export class MovieTitleService {
-  private baseUrl: string = 'http://localhost:8080/api/movies';
+  private baseUrl: string = `${environment.apiBaseUrl}`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   getAllMovieTitlesByName(name: string): Observable<MovieTitle[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa('user:user')
+    });
     const params = new HttpParams().set('name', name);
-    return this.http.get<MovieTitle[]>(`${this.baseUrl}`, { params });
+    return this.http.get<MovieTitle[]>(`${this.baseUrl}`, {headers, params});
   }
 }

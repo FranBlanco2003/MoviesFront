@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
-import {MovieTitle} from './movieTitle';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 export interface Movie {
   Title: string;
@@ -15,12 +15,15 @@ export interface Movie {
   providedIn: 'root'
 })
 export class MovieService {
-  private baseUrl: string = 'http://localhost:8080/api/movies/id';
+  private baseUrl: string = `${environment.apiBaseUrl}/id`;
 
   constructor(private http: HttpClient) {}
 
   getMovieDetails(id: string): Observable<Movie> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa('user:user')
+    });
     const params = new HttpParams().set('id', id);
-    return this.http.get<Movie>(`${this.baseUrl}`, { params });
+    return this.http.get<Movie>(`${this.baseUrl}`, { headers, params })
   }
 }
