@@ -21,16 +21,9 @@
     @for (movie of movies; track movie.imdbID) {
       <li>
         <a [routerLink]="['/movie', movie.imdbID]">
-          <img [src]="movie.Poster" alt="{{ movie.Title }}" />
           <h3>{{ movie.Title }}</h3>
-          <p>{{ movie.Year }}</p>
         </a>
       </li>
     }
   </ul>
-}
-
-
-@if (!isLoading && !movies.length && searchTerm) {
-  <div>No se encontraron resultados.</div>
 }

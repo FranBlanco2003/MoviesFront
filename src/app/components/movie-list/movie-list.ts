@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { MovieService, Movie } from '../../services/movie';
+import {Component} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import {MovieTitle, MovieTitleService} from '../../services/movieTitle';
 
 @Component({
   selector: 'app-movie-list',
@@ -14,11 +14,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class MovieListComponent {
   searchTerm: string = '';
-  movies: Movie[] = [];
+  movies: MovieTitle[] = [];
   isLoading = false;
   errorMessage = '';
 
-  constructor(private movieService: MovieService, private router: Router) {}
+  constructor(private movieTittle: MovieTitleService, private router: Router) {
+  }
 
   searchMovies(): void {
     if (!this.searchTerm.trim()) return;
@@ -27,24 +28,18 @@ export class MovieListComponent {
     this.errorMessage = '';
 
 
-
-    this.movieService.searchMovies(this.searchTerm).subscribe({
-      next: (data: Movie) => {
-        this.movies = [data]; // Wrap the single movie in an array
-        this.isLoading = false;
-        console.log(this.movies);
-      },
-      error: (error) => {
-        this.errorMessage = 'Error fetching movies. Please try again.';
-        console.error('Error fetching movies:', error);
+    this.movieTittle.getAllMovieTitlesByName(this.searchTerm).subscribe({
+      next: (data: MovieTitle[]) => {
+        this.movies = data;
         this.isLoading = false;
       }
+      ,
+      error: (error) => {
+        this.isLoading = false;
+        this.errorMessage = 'Error al buscar películas. Por favor, inténtelo de nuevo más tarde.';
+        console.error('Error al buscar películas:', error);
+      }
     });
-
-
-  }
-
-  goToDetails(movieId: string): void {
-    this.router.navigate(['/movie', movieId]);
   }
 }
+

@@ -2,25 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 
-export interface Movie {
+export interface MovieTitle {
   Title: string;
-  Year: string;
   imdbID: string;
-  imdbRating: string;
-  Director: string;
-  Poster: string;
-  Plot: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class MovieService {
+export class MovieTitleService {
   private baseUrl: string = 'http://localhost:8080/api/movies';
 
   constructor(private http: HttpClient) {}
 
-  getMovieDetails(id: number): Observable<Movie> {
-    return this.http.get<Movie>(`${this.baseUrl}/${id}`);
+  getAllMovieTitlesByName(name: string): Observable<MovieTitle[]> {
+    const params = new HttpParams().set('name', name);
+    return this.http.get<MovieTitle[]>(`${this.baseUrl}`, { params });
   }
 }
