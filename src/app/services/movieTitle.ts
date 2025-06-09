@@ -14,6 +14,9 @@ export interface MovieTitle {
 export class MovieTitleService {
   private baseUrl: string = `${environment.apiBaseUrl}`;
 
+  private lastSearchTerm = '';
+  private lastSearchResults: MovieTitle[] = [];
+
   constructor(private http: HttpClient) {
   }
 
@@ -26,5 +29,14 @@ export class MovieTitleService {
     }
     const params = new HttpParams().set('name', name);
     return this.http.get<MovieTitle[]>(`${this.baseUrl}`, {headers, params});
+  }
+
+  setSearchState(term: string, results: MovieTitle[]) {
+    this.lastSearchTerm = term;
+    this.lastSearchResults = results;
+  }
+
+  getSearchState(): { term: string; results: MovieTitle[] } {
+    return { term: this.lastSearchTerm, results: this.lastSearchResults };
   }
 }
